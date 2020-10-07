@@ -1,0 +1,25 @@
+= Spring Cloud Stream Application for String Case Transformer with Kafka Binder
+
+This application will consume records from a Kafka topic and then convert its case based on the property `case.uppercase`.
+It will produce the transformed String into an outbound Kafka topic.
+
+By default, uppercase transformation is enabled in this application. You can disable it by setting `case.uppercase` to `false.
+
+== Building
+
+`./mvnw clean package`
+
+== Running
+
+You can set the input Kafka topic using the property below:
+
+`spring.cloud.stream.bindings.input.destination`.
+
+Similarly, for the output topic, use the property `spring.cloud.stream.bindings.output.destination`.
+
+For example, this is how you run the application for input topic `data-in` and output topic `data-out`.
+
+[source]
+----
+java -jar target/case-processor-kafka-0.0.1-SNAPSHOT.jar --spring.cloud.stream.bindings.input.destination=data-in --spring.cloud.stream.bindings.output.destination=data-out
+----
